@@ -104,44 +104,10 @@ export default function App() {
     };
   }, []);
 
-  const links = [
-    {
-      title: "40 dias pra ter clareza e direção",
-      description: "Pra quem se sente perdida, confusa e sem saber o que fazer",
-      image: "./40 dias pra ter clareza e direção.png",
-      action: {
-        title: "Entrar no grupo",
-        url: "https://chat.whatsapp.com/JhNJIxWHK7j4VqOKSH9p2n",
-      },
-    },
-  ];
-
-  const products = [
-    {
-      title: "Produto Tira-Manchas",
-      url: "https://s.shopee.com.br/30j9vOSiHH",
-      image: "./produto_tira_manchas.webp",
-      price: "R$49,90",
-    },
-    {
-      title: "Meia-Calça Peluciada",
-      url: "https://s.shopee.com.br/30j9vOSiHH",
-      image: "./meia_calça.webp",
-      price: "R$26,99",
-    },
-    {
-      title: "Lençol Superior Premium",
-      url: "https://s.shopee.com.br/30j9vOSiHH",
-      image: "./lençol_superior_premium.webp",
-      price: "R$27,90",
-    },
-    {
-      title: "Lençol King Com Elástico",
-      url: "https://s.shopee.com.br/30j9vOSiHH",
-      image: "./lençol_king_com_elastico.webp",
-      price: "R$58,90",
-    },
-  ];
+  let data = {
+    links: JSON.parse(window.localStorage.getItem("links") || "[]"),
+    products: JSON.parse(window.localStorage.getItem("products") || "[]"),
+  };
 
   return (
     <div
@@ -209,73 +175,96 @@ export default function App() {
         {/* Content */}
         <div className="mt-5 space-y-3">
           {activeTab === "links" &&
-            links.map((item, index) => (
-              <div
-                key={index}
-                className="w-full rounded-3xl bg-white/10 ring-1 ring-white/10 backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_45px_rgba(0,0,0,0.24)]"
-              >
-                <div className="flex items-center gap-3 p-2 cursor-pointer">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-16 h-16 rounded-2xl object-cover border border-white/10"
-                  />
-                  <div className="flex-1 text-left">
-                    <p className="text-sm font-semibold text-white">
-                      {item.title}
-                    </p>
-                    <p className="text-sm text-white/70 leading-none">
-                      {item.description}
-                    </p>
+            data.links.map(
+              (
+                item: {
+                  title: string;
+                  description: string;
+                  image: string;
+                  action: {
+                    title: string;
+                    url: string;
+                  };
+                },
+                index: number,
+              ) => (
+                <div
+                  key={index}
+                  className="w-full rounded-3xl bg-white/10 ring-1 ring-white/10 backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_45px_rgba(0,0,0,0.24)]"
+                >
+                  <div className="flex items-center gap-3 p-2 cursor-pointer">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-16 h-16 rounded-2xl object-cover border border-white/10"
+                    />
+                    <div className="flex-1 text-left">
+                      <p className="text-sm font-semibold text-white">
+                        {item.title}
+                      </p>
+                      <p className="text-sm text-white/70 leading-none">
+                        {item.description}
+                      </p>
+                    </div>
+                    {item.action && (
+                      <a
+                        href={item.action.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-black shadow-sm transition duration-300 hover:bg-white/90"
+                        title={item.action.title}
+                      >
+                        <IconChevronRight size={22} />
+                        <span className="sr-only">{item.action.title}</span>
+                      </a>
+                    )}
                   </div>
-                  {item.action && (
-                    <a
-                      href={item.action.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-black shadow-sm transition duration-300 hover:bg-white/90"
-                      title={item.action.title}
-                    >
-                      <IconChevronRight size={22} />
-                      <span className="sr-only">{item.action.title}</span>
-                    </a>
-                  )}
                 </div>
-              </div>
-            ))}
+              ),
+            )}
 
           {activeTab === "shop" &&
-            products.map((item, index) => (
-              <div
-                key={index}
-                className="w-full rounded-3xl bg-white/10 ring-1 ring-white/10 backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_45px_rgba(0,0,0,0.24)] cursor-pointer"
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.open(item.url, "_blank");
-                }}
-              >
-                <div className="flex items-center gap-3 p-2">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-16 h-16 rounded-2xl object-cover border border-white/10"
-                  />
-                  <div className="flex-1 text-left">
-                    <p className="text-sm font-semibold text-white">
-                      {item.title}
-                    </p>
-                    <div className="mt-1 flex items-center gap-2">
-                      <span className="inline-flex rounded-full bg-white/15 px-3 py-1 text-xs text-white">
-                        {item.price}
-                      </span>
+            data.products.map(
+              (
+                item: {
+                  title: string;
+                  url: string;
+                  image: string;
+                  price: string;
+                },
+                index: number,
+              ) => (
+                <div
+                  key={index}
+                  className="w-full rounded-3xl bg-white/10 ring-1 ring-white/10 backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_45px_rgba(0,0,0,0.24)] cursor-pointer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.open(item.url, "_blank");
+                  }}
+                >
+                  <div className="flex items-center gap-3 p-2">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-16 h-16 rounded-2xl object-cover border border-white/10"
+                    />
+                    <div className="flex-1 text-left">
+                      <p className="text-sm font-semibold text-white">
+                        {item.title}
+                      </p>
+                      <div className="mt-1 flex items-center gap-2">
+                        <span className="inline-flex rounded-full bg-white/15 px-3 py-1 text-xs text-white">
+                          {item.price}
+                        </span>
+                      </div>
                     </div>
+                    <button className="inline-flex mr-1 h-11 items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-black shadow-sm transition duration-300 hover:bg-white/90">
+                      Comprar
+                    </button>
                   </div>
-                  <button className="inline-flex mr-1 h-11 items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-black shadow-sm transition duration-300 hover:bg-white/90">
-                    Comprar
-                  </button>
                 </div>
-              </div>
-            ))}
+              ),
+            )}
         </div>
       </div>
     </div>

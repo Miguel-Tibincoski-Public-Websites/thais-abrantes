@@ -74,6 +74,53 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      window.localStorage.setItem(
+        "links",
+        JSON.stringify([
+          {
+            title: "40 dias pra ter clareza e direção",
+            description:
+              "Pra quem se sente perdida, confusa e sem saber o que fazer",
+            image: "./40 dias pra ter clareza e direção.png",
+            action: {
+              title: "Entrar no grupo",
+              url: "https://chat.whatsapp.com/JhNJIxWHK7j4VqOKSH9p2n",
+            },
+          },
+        ]),
+      );
+
+      window.localStorage.setItem(
+        "products",
+        JSON.stringify([
+          {
+            title: "Produto Tira-Manchas",
+            url: "https://s.shopee.com.br/30j9vOSiHH",
+            image: "./produto_tira_manchas.webp",
+            price: "R$49,90",
+          },
+          {
+            title: "Meia-Calça Peluciada",
+            url: "https://s.shopee.com.br/30j9vOSiHH",
+            image: "./meia_calça.webp",
+            price: "R$26,99",
+          },
+          {
+            title: "Lençol Superior Premium",
+            url: "https://s.shopee.com.br/30j9vOSiHH",
+            image: "./lençol_superior_premium.webp",
+            price: "R$27,90",
+          },
+          {
+            title: "Lençol King Com Elástico",
+            url: "https://s.shopee.com.br/30j9vOSiHH",
+            image: "./lençol_king_com_elastico.webp",
+            price: "R$58,90",
+          },
+        ]),
+      );
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
