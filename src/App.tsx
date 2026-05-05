@@ -120,25 +120,25 @@ export default function App() {
     {
       title: "Produto Tira-Manchas",
       url: "https://s.shopee.com.br/30j9vOSiHH",
-      image: "./products/produto_tira_manchas.webp",
+      image: "./produto_tira_manchas.webp",
       price: "R$49,90",
     },
     {
       title: "Meia-Calça Peluciada",
       url: "https://s.shopee.com.br/30j9vOSiHH",
-      image: "./products/meia_calça.webp",
+      image: "./meia_calça.webp",
       price: "R$26,99",
     },
     {
       title: "Lençol Superior Premium",
       url: "https://s.shopee.com.br/30j9vOSiHH",
-      image: "./products/lençol_superior_premium.webp",
+      image: "./lençol_superior_premium.webp",
       price: "R$27,90",
     },
     {
       title: "Lençol King Com Elástico",
       url: "https://s.shopee.com.br/30j9vOSiHH",
-      image: "./products/lençol_king_com_elastico.webp",
+      image: "./lençol_king_com_elastico.webp",
       price: "R$58,90",
     },
   ];
@@ -163,7 +163,9 @@ export default function App() {
           className="w-24 h-24 rounded-full mx-auto mb-3 object-cover"
         />
 
-        <h1 className="text-xl font-semibold text-slate-50 text-shadow-sm">Thais Abrantes</h1>
+        <h1 className="text-xl font-semibold text-slate-50 text-shadow-sm">
+          Thais Abrantes
+        </h1>
 
         <p className="text-slate-100 text-sm mt-1 text-shadow-sm">
           Se você se sente perdida e sem clareza,{" "}
